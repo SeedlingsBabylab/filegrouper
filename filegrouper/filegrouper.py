@@ -15,8 +15,7 @@ class FileGrouper(object):
         for filetype in types:
             self.type_map[filetype.typename] = filetype.comp_func
 
-        #self.groups = []
-        self.groups = dict()
+        self.groups_ = dict()
         self.walk_directory()
 
 
@@ -29,18 +28,18 @@ class FileGrouper(object):
                 if file.startswith("."):
                     continue
                 pref = file[:self.prefix_len]
-                if pref not in self.groups:
-                    self.groups[pref] = FileGroup(self.type_map.keys())
-                curr_group = self.groups[pref]
+                if pref not in self.groups_:
+                    self.groups_[pref] = FileGroup(self.type_map.keys())
+                curr_group = self.groups_[pref]
                 curr_group.prefix = pref
-                if pref in self.groups:
+                if pref in self.groups_:
                     if self.group_full(curr_group):
                         curr_group.outliers_extra.append(file)
                     if not self.group_full(curr_group):
                         self.add_file(curr_group, os.path.join(root, file))
 
     def outliers(self):
-        return [x for x in self.groups.values() if x.outliers_extra or not self.group_full(x)]
+        return [x for x in self.groups_.values() if x.outliers_extra or not self.group_full(x)]
 
     def group_full(self, group):
         found_empty = False
@@ -63,10 +62,13 @@ class FileGrouper(object):
                 return
 
     def prefix_in_groups(self, prefix):
-        for group in self.groups:
+        for group in self.groups_:
             if group.prefix == prefix:
                 return True
         return False
+
+    def groups(self):
+        return self.groups_.items()
 
 
 class FileGroup(object):

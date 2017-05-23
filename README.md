@@ -31,7 +31,7 @@ grouper = fg.FileGrouper(dir=input_dir,
 # constructor. The grouper.groups member is a dict of
 # prefix keys to FileGroup objects
 
-for prefix, group in grouper.groups.items():
+for prefix, group in grouper.groups():
     print group.lena5min
     print group.silences
     print group.clan_final

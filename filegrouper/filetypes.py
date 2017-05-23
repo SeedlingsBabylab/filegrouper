@@ -83,6 +83,15 @@ def video_personal_info_comp_func(input):
         return True
     return False
 
+def video_recode_csv_comp_func(input):
+    if input.endswith("recode_processed.csv"):
+        return True
+    return False
+
+def video_recode_csv_orig_comp_func(input):
+    if input.endswith("recode_orig_processed.csv"):
+        return True
+    return False
 
 opf_not_final = FileType("opf_not_final", opf_not_final_comp_func)
 opf_final = FileType("opf_final",opf_final_comp_func)
@@ -98,3 +107,5 @@ clan_final = FileType("clan_final", clan_final_comp_func)
 newclan_merged = FileType("newclan_merged", clan_merged_comp_func)
 newclan_merged_final = FileType("newclan_merged_final", clan_merged_final_comp_func)
 video_personal_info = FileType("video_personal_info", video_personal_info_comp_func)
+video_recode_csv = FileType("video_recode_csv", video_recode_csv_comp_func)
+orig_video_recode_csv = FileType("orig_video_recode_csv", video_recode_csv_comp_func)
