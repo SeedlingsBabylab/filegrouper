@@ -93,6 +93,9 @@ def audio_recode_orig_cha_comp_func(input):
 def clan_sparse_code_comp_func(input):
     return input_endswith(input, "sparse_code.cha")
 
+def clan_chi_checked_comp_func(input):
+    return input_endswith(input, "_chi_checked.cha")
+
 def lena_cha_comp_func(input):
     return input_endswith(input, ".lena.cha")
 
@@ -126,3 +129,4 @@ audio_orig_recode_csv = FileType("orig_audio_recode_csv", audio_recode_csv_orig_
 audio_blank_recode_cha = FileType("audio_recode_cha", audio_recode_blank_cha_comp_func)
 audio_orig_recode_cha = FileType("audio_orig_recode_cha", audio_recode_orig_cha_comp_func)
 clan_sparsecode = FileType("clan_sparsecode", clan_sparse_code_comp_func)
+clan_chi_checked = FileType("clan_chi_checked", clan_chi_checked_comp_func)
